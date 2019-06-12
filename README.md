@@ -10,8 +10,10 @@
 			      url="jdbc:mysql://localhost:3306/testdb" username="root" />
 ```
             
-2.Tomcat context.xml modification
+2.Tomcat  tomcat/conf/context.xml modification
+```xml
   <ResourceLink auth="Container" 
                 global="jdbc/j4s" 
                 name="jdbc/j4s" 
                 type="javax.sql.DataSource"/>
+```
