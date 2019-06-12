@@ -1,5 +1,5 @@
 # JNDI_ENCRYPT
-1.Tomcat server.xml modification in "<GlobalNamingResources>"
+1.Tomcat server.xml modification in [<GlobalNamingResources>] tag
   <Resource auth="Container"
             signleton="false"
 		        factory="com.ibm.demo1.configuration.SecureTomcatDataSourceImpl"
