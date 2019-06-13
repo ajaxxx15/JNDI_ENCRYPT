@@ -1,5 +1,5 @@
 # JNDI_ENCRYPT
-1.Tomcat tomcat/conf/server.xml modification in GlobalNamingResources
+1.Tomcat tomcat/conf/server.xml modification in GlobalNamingResources(Using Base64)
 ```xml
   <Resource auth="Container"
             signleton="false"
