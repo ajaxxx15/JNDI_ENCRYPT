@@ -24,20 +24,33 @@ import java.util.logging.Logger;
 import org.apache.tomcat.jdbc.pool.DataSourceFactory;
 import org.apache.tomcat.jdbc.pool.PoolConfiguration;
 import org.apache.tomcat.jdbc.pool.XADataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 
+import com.zaxxer.hikari.HikariConfig;
+
 @Configuration
-public class SecureTomcatDataSourceImpl extends DataSourceFactory {
+public class SecureTomcatDataSourceImpl extends DataSourceFactory {	 
+		
 
     private static final Log log = LogFactory.getLog(SecureTomcatDataSourceImpl.class);
 
-    private CipherEncrypte encryptor = null;
+    @Autowired
+    private CipherEncrypte encryptor;
+    
+    
 
     public SecureTomcatDataSourceImpl() {
-        try {
-            encryptor = new CipherEncrypte("CompEncryptedDataSourceFactory"); // If you've used your own secret key, pass it in...
+    	
+    
+     try {
+            encryptor = new CipherEncrypte(); // If you've used your own secret key, pass it in...
         } catch (Exception e) {
             log.fatal("Error instantiating decryption class.", e);
             throw new RuntimeException(e);
@@ -58,8 +71,8 @@ public class SecureTomcatDataSourceImpl extends DataSourceFactory {
         if (poolProperties.getDataSourceJNDI() != null && poolProperties.getDataSource() == null) {
             performJNDILookup(context, poolProperties);
         }
-        org.apache.tomcat.jdbc.pool.DataSource dataSource = XA ? new XADataSource(poolProperties)
-                : new org.apache.tomcat.jdbc.pool.DataSource(poolProperties);
+
+        org.apache.tomcat.jdbc.pool.DataSource dataSource =  new org.apache.tomcat.jdbc.pool.DataSource(poolProperties);
         
         String Name = SecureTomcatDataSourceImpl.getProperties("name").toString();
         String URL = poolProperties.getUrl();
