@@ -18,5 +18,3 @@
                 type="javax.sql.DataSource"/>
 ```
 
-3.To get the encrypted password call this API
-	[URL]/api/getencryption/{yourpassword}
