@@ -72,7 +72,8 @@ public class SecureTomcatDataSourceImpl extends DataSourceFactory {
             performJNDILookup(context, poolProperties);
         }
 
-        org.apache.tomcat.jdbc.pool.DataSource dataSource =  new org.apache.tomcat.jdbc.pool.DataSource(poolProperties);
+         org.apache.tomcat.jdbc.pool.DataSource dataSource = XA ? new XADataSource(poolProperties)
+                : new org.apache.tomcat.jdbc.pool.DataSource(poolProperties);
         
         String Name = SecureTomcatDataSourceImpl.getProperties("name").toString();
         String URL = poolProperties.getUrl();
