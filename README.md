@@ -1,6 +1,7 @@
 # JNDI_ENCRYPT
-1.Tomcat tomcat/conf/server.xml modification in GlobalNamingResources
- 	a.for ORACLE database
+1.Tomcat tomcat/conf/server.xml modification in GlobalNamingResources:-
+
+ a.for ORACLE database
 ```xml
  <Resource auth="Container"
 			 singleton="false" driverClassName="oracle.jdbc.OracleDriver"
@@ -9,7 +10,7 @@
 			username="DatabaseUserName" password="YourEncrptedPassword"
 			type="javax.sql.DataSource" url="jdbc:oracle:thin:@//localhost:1521/XE"/>
 ```
-	b.for MYSQL database
+b.for MYSQL database
 ```xml
 <Resource auth="Container"
 			singleton="false" driverClassName="com.mysql.cj.jdbc.Driver"
