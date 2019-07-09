@@ -1,15 +1,19 @@
 package com.ibm.demo1.service;
 
 import com.ibm.demo1.domain.Employee;
-import com.ibm.demo1.repository.EmployeeRepository;
+import com.ibm.demo1.domain.Student;
+import com.ibm.demo1.repository.employee.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-	private EmployeeRepository employeeRepository;
+
+
+	public EmployeeRepository employeeRepository;
 
 	@Autowired
 	public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
@@ -28,5 +32,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee getEmployeeByName(String name) {
 		return employeeRepository.findByName(name);
+	}
+
+	@Override
+	public Iterable<Student> getAllStudent() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

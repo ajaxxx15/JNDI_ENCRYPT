@@ -55,7 +55,13 @@ public class EmployeeController {
     	
     	String encryptpassword = null;
 		
-			encryptpassword = new CipherEncrypte().encrypt(password);
+			try {
+				encryptpassword = new CipherEncrypte().encrypt(password);
+			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException
+					| BadPaddingException | UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	
     	
     	return new ResponseEntity<String> (encryptpassword,HttpStatus.OK);

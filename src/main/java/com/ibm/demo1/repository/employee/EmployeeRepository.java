@@ -1,6 +1,8 @@
-package com.ibm.demo1.repository;
+package com.ibm.demo1.repository.employee;
 
 import com.ibm.demo1.domain.Employee;
+
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

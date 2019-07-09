@@ -68,16 +68,40 @@
 			<artifactId>tomcat-jdbc</artifactId>
 			<version>9.0.21</version>
 		</dependency>
+		
+		<dependency>
+		<groupId>com.oracle</groupId>
+		<artifactId>ojdbc6</artifactId>
+		<version>11.2.0.3.0</version>
+		</dependency>
 
 
 	</dependencies>
 
 	<build>
-	<finalName>demo</finalName>
+		<finalName>demo</finalName>
 		<plugins>
 			<plugin>
+
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>http://localhost:8080/manager/text</url>
+					<path>/DeployMavenToTomcat</path>
+					<!-- Set update to true to avoid exist war package can not be override 
+						error -->
+					<update>true</update>
+					<!-- Because deploy this maven project using plugin in pom so use the 
+						manager-script role user. -->
+					<username>admin</username>
+					<password>admin</password>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
